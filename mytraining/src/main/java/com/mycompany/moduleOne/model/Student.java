@@ -1,4 +1,4 @@
-package com.s3s.mytraining.model;
+package com.mycompany.moduleOne.model;
 
 public class Student {
 

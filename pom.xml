@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.s3s</groupId>
-    <artifactId>javalearining</artifactId>
+    <groupId>com.mycompany</groupId>
+    <artifactId>spotlight</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 <packaging>pom</packaging>
 
@@ -18,7 +18,7 @@
 
 
     <modules>
-        <module>mytraining</module>
+        <module>moduleOne</module>
     </modules>
 
     <properties>

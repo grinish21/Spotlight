@@ -1,8 +1,8 @@
-package com.s3s.mytraining.service;
+package com.mycompany.moduleOne.service;
 
+import com.mycompany.moduleOne.model.Student;
 import org.springframework.stereotype.Component;
 
-import com.s3s.mytraining.model.Student;
 @Component
 public class StudentServiceImpl implements StudentService {
 
