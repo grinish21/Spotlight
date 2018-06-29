@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+
+     postgre:
+        build: postgre
+        container_name: local-postgres
+        environment:
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=postgres
+          - POSTGRES_DB=spotlight-db
+        ports:
+          - "5432:5432"
+        volumes:
+         - ~/Documents/postgre/data/:/var/lib/postgres/data
