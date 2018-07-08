@@ -1,41 +1,47 @@
 package com.mycompany.moduleOne.controller;
 
-import com.mycompany.moduleOne.model.Student;
-import com.mycompany.moduleOne.service.StudentServiceImpl;
+import com.mycompany.moduleOne.entity.StudentEntity;
+import com.mycompany.moduleOne.entity.TestStudent;
+import com.mycompany.moduleOne.repository.StudentRepository;
+import com.mycompany.moduleOne.repository.TestStudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 public class StudentController {
+
     @Autowired
-    StudentServiceImpl studentService;
+    StudentRepository studentRepository;
 
-    @GetMapping("/getstudent")
-    public @ResponseBody
-    Student getStudentDetails(
-            @RequestParam(name = "id", required = true, defaultValue = "0") Long id) {
+    @Autowired
+    TestStudentRepository testStudentRepository;
 
-        return studentService.getStudentDetails(id);
+
+    @PostMapping("/student")
+    public StudentEntity createStudent(@Valid @RequestBody StudentEntity student) {
+        return studentRepository.save(student);
     }
 
-    // Example Response Entity
-    @RequestMapping(value = "/getstudent1", method = RequestMethod.GET)
-    public ResponseEntity<Student> getStudentDetailsTest(
-            @RequestParam(name = "id", required = true, defaultValue = "0") long id) {
-        if (id == 0) {
-            return ResponseEntity.badRequest().body(new Student());
-        }
-
-        Student s1 = new Student();
-        s1.setId(1);
-        s1.setName("myname");
-        s1.setStandard("33");
-        return ResponseEntity.ok().body(s1);
+    @GetMapping("/student/{id}")
+    public StudentEntity getNoteById(@PathVariable(value = "id") Long noteId) {
+        return studentRepository.findById(noteId)
+                .orElseThrow(() -> new RuntimeException("Cannot find student"));
     }
+
+
+    @PostMapping("/testStudent")
+    public TestStudent addStudent(@RequestBody TestStudent testStudent){
+
+        return testStudentRepository.save(testStudent);
+    }
+
+    @GetMapping("/gettestStudent")
+    public TestStudent getStudent (@RequestParam(name = "id", required = false, defaultValue = "1") Long id){
+        return testStudentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cannot find student"));
+
+    }
+
 }

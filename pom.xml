@@ -19,6 +19,7 @@
 
     <modules>
         <module>moduleOne</module>
+        <module>eureka</module>
     </modules>
 
     <properties>
